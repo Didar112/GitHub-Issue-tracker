@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- tailwind and daisyui -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- fontawesome icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- common styles -->
+    <style>
+        * {
+            font-family: "Geist", sans-serif;
+        }
+    </style>
+
+
+    <title>GitHub Issues Tracker</title>
+    <link rel="shortcut icon" href="./assets/github-logo.png" type="image/x-icon">
+</head>
+
+<body>
+
+
+    <div class="hero bg-base-200 min-h-screen">
+        
+
+            <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+                <div class="flex flex-col items-center pt-5">
+                    <img src="./assets/github-logo.png" alt="">
+                    <p class="font-semibold text-[24px] text-[#1F2937]">GitHub Issues Tracker</p>
+                    <p class="font-light text-[16px] text-[#1F2937]">Sign in to manage your issues</p>
+                </div>
+                <div class="card-body">
+                    <fieldset class="fieldset">
+                        <label class="label">Username</label>
+                        
+                        <input id="usernameId" type="text" class="input" placeholder="Enter Username" />
+                        <div class="text-[#4A00FF]">Default: admin</div>
+                        <label class="label pt-2">Password</label>
+                        <input id="passId" type="password" class="input" placeholder="Enter Password" />
+                        <div class="text-[#4A00FF]">Default: admin123</div>
+                        <button id="login-btn" class="btn btn-primary mt-4">Sign In</button>
+                    </fieldset>
+
+                    <div class="flex w-full flex-col">
+
+                        <div class="divider">OR</div>
+                        <p class="font-light text-[14px] text-center">demo credentials:
+                        </p>
+                        <div class="card bg-base-300 rounded-box flex h-20 place-items-center py-5">
+
+                            <div>
+                                <p>
+                                   <span class="font-bold">Username:</span> admin</p>
+                            </div>
+                            <div>
+                                <p>
+                                    <span class="font-bold">Password:</span> admin123</p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        
+
+<script>
+    document.getElementById("login-btn").addEventListener('click', ()=>{
+
+        
+        const userName = document.getElementById("usernameId")
+        const pass = document.getElementById("passId")
+
+        const nameval=userName.value
+        const passVal=pass.value
+
+        console.log(nameval, passVal);
+
+        if(nameval=="admin" && passVal=="admin123"){
+
+            console.log("login success");
+            window.location.replace("/dashboard.html")
+        } else{
+            alert("Incorrect Credentials");
+        }
+    })
+</script>
+
+</body>
+
+</html>
