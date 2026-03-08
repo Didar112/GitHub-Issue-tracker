@@ -8,6 +8,9 @@ const allBtn=document.getElementById("all-btn")
 const openBtn=document.getElementById("open-btn")
 const closedBtn=document.getElementById("close-btn")
 
+//spinner 
+const spnr = document.getElementById("spinner");
+
 
 
 
@@ -18,7 +21,14 @@ const createSyn=(arr)=>{
     return array.join(" ")
 
 }
-//function for 
+//function for spinner logic
+const showSpinner=()=>{
+    spnr.classList.remove("hidden")
+    cardHolder.innerHTML="";
+}
+const hideSpinner=()=>{
+    spnr.classList.add("hidden")
+}
 
 
 // bring "all" data from the api
@@ -31,16 +41,18 @@ const getAllissues=async()=>{
     openBtn.classList.add("btn-outline")
     closedBtn.classList.add("btn-outline")
     issueCounter=0
-
+    showSpinner()
     const res = await fetch(url)
     const data = await res.json()
 
     showAllissues(data.data);
     
+    
 }
 // showing all data cards
 const showAllissues=(arr)=> {
 
+    
     cardHolder.innerHTML="";
 
 
@@ -80,6 +92,7 @@ const showAllissues=(arr)=> {
         
     });
     issueCount.innerText=`${issueCounter} Issues`
+   hideSpinner()
 }
 
 
@@ -92,7 +105,7 @@ const getOpenissues=async()=>{
     closedBtn.classList.remove("btn-primary")
     allBtn.classList.add("btn-outline")
     closedBtn.classList.add("btn-outline")
-
+    showSpinner()
     const res = await fetch(url)
     const data = await res.json()
 
@@ -116,7 +129,7 @@ const getClosedissues=async()=>{
     openBtn.classList.add("btn-outline")
     allBtn.classList.add("btn-outline")
 
-
+    showSpinner()
     const res = await fetch(url)
     const data = await res.json()
 
