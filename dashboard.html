@@ -55,13 +55,91 @@
     </div>
 
 
+
+    <!-- catagory buttons section -->
+
+    <section class="container mt-[60px] mx-auto mb-[16px]">
+        <div class="card card-side bg-base-100 shadow-sm">
+  
+            <div class="p-6 space-x-2">
+                <button onclick="getAllissues()" id="all-btn" class="btn btn-primary w-28">All</button>
+                <button onclick="getOpenissues()" id="open-btn" class="btn btn-outline btn-primary w-28">Open</button>
+                <button  id="close-btn" class="btn btn-outline btn-primary w-28">Closed</button>
+            </div>
+</div>
+    </section>
+
+
+    <!-- rest of the body -->
+
+    <section class="container mx-auto">
+
+
+        <!-- top section container-->
+        <div class="flex justify-between p-[24px]">
+
+                <!-- 50 issues and circle holder -->
+            <div class="flex items-center gap-5">
+                <div class="rounded-full p-1 bg-[#ECE4FF]">
+                    <img src="./assets/Aperture.png" alt="">
+                </div>
+                <div>
+                <h3 id="issueCount" class="font-semibold text-[20px]">50 Issues</h3>
+                <p class="font-light text-[#64748B] text-[16px]">Track and manage your project issues</p>
+                </div>
+            </div>
+
+            <!-- open close holder -->
+             <div class="grid grid-cols-2 gap-4 mt-7">
+                <div class="flex gap-2 items-center"><img src="./assets/Ellipse 2.png" alt="">
+                    <p>Open</p>
+                </div>
+                <div class="flex gap-2 items-center"><img  src="./assets/Ellipse 2 (1).png" alt="">
+                    <p>Closed</p>
+                </div>
+                
+             </div>
+
+        </div>
+
+
+        <!-- card display gallery -->
+         <div id="card-display" class="card-section p-6 grid grid-cols-4 gap-6">
+
+            <!-- single cards -->
+            <!-- <div class="card shadow-sm">
+                <div class="p-[24px] pb-0">
+                <div class="flex justify-between mb-3">
+                    <img src="./assets/Open-Status.png" alt="">
+                    <div class="badge badge-soft badge-accent">Accent</div>
+                </div>
+                <h3 class="font-semibold text-[18px]">Fix navigation menu on mobile devices</h3>
+                <p class="line-clamp-2 mb-3 font-light text-[14px]">The navigation menu doesn't collapse properly on mobile devices</p>
+
+                <div class="flex gap-1 items-center">
+                      <div class="badge badge-soft badge-accent">Accent</div>
+                    <div class="badge badge-soft badge-accent">Accent</div>
+                </div>
+                </div>
+                  <div class="divider mb-[0px]"></div>
+                  <div class="p-[24px]">
+                  <p class="font-extralight text-[12px]">#1 by john_doe</p>
+                  <p class="font-extralight text-[12px]">1/15/2024</p>
+                  </div>
+            </div> -->
+            
+
+         </div>
+
+    </section>
+
     </div>
     </div>
 
 
 
 
-
+    <script src="./machine.js"></script>
 </body>
 
 </html>
