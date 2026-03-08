@@ -18,7 +18,7 @@ const createSyn=(arr)=>{
     return array.join(" ")
 
 }
-//function for active button color changing mechanism
+//function for 
 
 
 // bring "all" data from the api
