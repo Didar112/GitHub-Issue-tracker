@@ -12,12 +12,65 @@ const closedBtn=document.getElementById("close-btn")
 const spnr = document.getElementById("spinner");
 
 
+//modal 
+const mdl = document.getElementById("my_modal_1")
+
+//modal showing function, will call in innerhtml of showcards
+const buildModal=async(id)=>{
+
+        const singleUrl = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`
+
+        const res  =await fetch(singleUrl)
+        const data = await res.json()
+        const dataObj=data.data
+        my_modal_1.showModal()
+    
+        mdl.innerHTML=`
+        
+        <div class="modal-box">
+        <h3 class="text-lg font-bold">${dataObj.title}</h3>
+        <p class="py-4">${dataObj.description}</p> 
+       
+        <div class="flex items-start">
+        <div class="badge badge-success mr-5">Opened</div>
+            <p class="font-light text-[12px] mr-4">Opened by ${dataObj.author}</p>
+            <p class="font-light text-[12px]">${dataObj.createdAt}</p>
+        </div>
+        <div class="modal-badge-holder my-5">
+                        ${createSyn(dataObj.labels)}
+        </div>
+        <p class="font-normal text-[16px]">${dataObj.description}</p>
+        <div class="card mt-6 bg-base-100 card-xs shadow-sm">
+  <div class="w-[100%] mx-auto card-body bg-slate-100 grid grid-cols-2">
+    <div>
+        <p>assignee: <br></p>
+        <p>${dataObj.author}</p>
+    </div>
+    <div>
+        <p>Prioroty:</p>
+        <div class="badge badge-error">HIGH</div>
+    </div>
+  </div>
+</div>
+        <div class="modal-action">
+            <form method="dialog">
+               
+                <button class="btn">Close</button>
+            </form>
+        </div>
+    </div>
+        
+        `
+        
+
+}
+
 
 
 // dynamically create array for badges
 const createSyn=(arr)=>{
 
-    const array=arr.map((element)=> `<div class="badge badge-soft badge-accent">${element}</div>`);
+    const array=arr.map((element)=> `<div class="badge badge-soft badge-warning">${element}</div>`);
     return array.join(" ")
 
 }
@@ -67,7 +120,7 @@ const showAllissues=(arr)=> {
         
         card.innerHTML=`
 
-            <div class="card shadow-sm">
+            <div onclick="buildModal(${element.id})" class="card shadow-sm hover:cursor-pointer">
                 <div class="p-[24px] pb-0">
                 <div class="flex justify-between mb-3">${(element.status=="open")?`<img src="./assets/Open-Status.png" alt="">`:`<img src="./assets/Closed- Status .png" alt="">`}
                     
