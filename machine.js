@@ -3,6 +3,11 @@ const cardHolder=document.getElementById("card-display") //card gallery
 const issueCount = document.getElementById("issueCount") // issues counter
 let issueCounter=0;
 
+//catahgory buttons
+const allBtn=document.getElementById("all-btn")
+const openBtn=document.getElementById("open-btn")
+const closedBtn=document.getElementById("close-btn")
+
 
 
 
@@ -13,18 +18,25 @@ const createSyn=(arr)=>{
     return array.join(" ")
 
 }
+//function for active button color changing mechanism
 
 
 // bring "all" data from the api
 const getAllissues=async()=>{
+    allBtn.classList.add("btn-primary")
+    allBtn.classList.remove("btn-outline")
     const url="https://phi-lab-server.vercel.app/api/v1/lab/issues"
+    openBtn.classList.remove("btn-primary")
+    closedBtn.classList.remove("btn-primary")
+    openBtn.classList.add("btn-outline")
+    closedBtn.classList.add("btn-outline")
     issueCounter=0
 
     const res = await fetch(url)
     const data = await res.json()
 
     showAllissues(data.data);
-
+    
 }
 // showing all data cards
 const showAllissues=(arr)=> {
@@ -34,6 +46,12 @@ const showAllissues=(arr)=> {
 
     arr.forEach(element => {
         let card = document.createElement("div")
+
+        if(element.status=="open"){
+            card.classList.add("border-t-3", "border-green-500")
+        } else {
+            card.classList.add("border-t-3", "border-purple-500")
+        }
         
         card.innerHTML=`
 
@@ -67,8 +85,13 @@ const showAllissues=(arr)=> {
 
 //filtering data for open issues only 
 const getOpenissues=async()=>{
+    openBtn.classList.add("btn-primary")
+    openBtn.classList.remove("btn-outline")
     const url="https://phi-lab-server.vercel.app/api/v1/lab/issues"
-
+    allBtn.classList.remove("btn-primary")
+    closedBtn.classList.remove("btn-primary")
+    allBtn.classList.add("btn-outline")
+    closedBtn.classList.add("btn-outline")
 
     const res = await fetch(url)
     const data = await res.json()
@@ -83,17 +106,21 @@ const filterOpenIssues=(data)=>{
 }
 
 
-
-
 //filtering data for closed issues only 
 const getClosedissues=async()=>{
+    closedBtn.classList.add("btn-primary")
+    closedBtn.classList.remove("btn-outline")
     const url="https://phi-lab-server.vercel.app/api/v1/lab/issues"
+    allBtn.classList.remove("btn-primary")
+    openBtn.classList.remove("btn-primary")
+    openBtn.classList.add("btn-outline")
+    allBtn.classList.add("btn-outline")
 
 
     const res = await fetch(url)
     const data = await res.json()
 
-    filterOpenIssues(data.data);
+    filterClosedIssues(data.data);
 }
 
 const filterClosedIssues=(data)=>{
