@@ -164,7 +164,7 @@ const showAllissues=(arr)=> {
 
             <div onclick="buildModal(${element.id})" class="card border-t-4 ${borderColor} shadow-sm hover:cursor-pointer h-full">
                 <div class="p-[24px] pb-0">
-                <div class="flex justify-between mb-3">${(element.status=="open")?`<img src="../assets/OpenStatus.png" alt="">`:`<img src="./assets/Closed- Status .png" alt="">`}
+                <div class="flex justify-between mb-3">${(element.status=="open")?`<img src="../assets/OpenStatus.png" alt="">`:`<img src="../assets/ClosedStatus.png" alt="">`}
                     
                     <div class="badge badge-soft badge-warning">${(element.priority)}</div>
                 </div>
