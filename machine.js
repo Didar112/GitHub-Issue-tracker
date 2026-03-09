@@ -3,6 +3,11 @@ const cardHolder=document.getElementById("card-display") //card gallery
 const issueCount = document.getElementById("issueCount") // issues counter
 let issueCounter=0;
 
+const srcBox = document.getElementById("srbox")
+const srcBtn =document.getElementById("find-btn")
+
+
+
 //catahgory buttons
 const allBtn=document.getElementById("all-btn")
 const openBtn=document.getElementById("open-btn")
@@ -66,6 +71,42 @@ const buildModal=async(id)=>{
 }
 
 
+// search functionality
+//btn click 
+const srcBtnClick=()=>{
+    searchIssue(srcBox.value)
+}
+
+const searchIssue= async(val)=>{
+    //search api
+searchUrl= `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${val}`
+
+    showSpinner()
+    allBtn.classList.remove("btn-primary")
+    openBtn.classList.remove("btn-primary")
+    closedBtn.classList.remove("btn-primary")
+    allBtn.classList.add("btn-outline")
+    openBtn.classList.add("btn-outline")
+    closedBtn.classList.add("btn-outline")
+    const res=await fetch(searchUrl)
+    const data = await res.json()
+    
+    
+    
+    showAllissues(data.data);
+    hideSpinner()
+
+    
+
+    
+
+ }
+
+
+
+
+
+
 
 // dynamically create array for badges
 const createSyn=(arr)=>{
@@ -108,7 +149,7 @@ const showAllissues=(arr)=> {
     
     cardHolder.innerHTML="";
 
-
+    issueCounter=0
     arr.forEach(element => {
         let card = document.createElement("div")
 
