@@ -1,6 +1,7 @@
 // id getting part
 const cardHolder=document.getElementById("card-display") //card gallery 
 const issueCount = document.getElementById("issueCount") // issues counter
+
 let issueCounter=0;
 
 const srcBox = document.getElementById("srbox")
@@ -152,16 +153,16 @@ const showAllissues=(arr)=> {
     issueCounter=0
     arr.forEach(element => {
         let card = document.createElement("div")
-
+        let borderColor='';
         if(element.status=="open"){
-            card.classList.add("border-t-3", "border-green-500")
+            borderColor="border-green-500"
         } else {
-            card.classList.add("border-t-3", "border-purple-500")
+            borderColor="border-purple-500"
         }
         
         card.innerHTML=`
 
-            <div onclick="buildModal(${element.id})" class="card shadow-sm hover:cursor-pointer">
+            <div onclick="buildModal(${element.id})" class="card border-t-4 ${borderColor} shadow-sm hover:cursor-pointer h-full">
                 <div class="p-[24px] pb-0">
                 <div class="flex justify-between mb-3">${(element.status=="open")?`<img src="./assets/Open-Status.png" alt="">`:`<img src="./assets/Closed- Status .png" alt="">`}
                     
